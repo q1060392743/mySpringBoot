@@ -58,7 +58,7 @@ public class MySpringBoot2Application {
 }
 ```
 
-# 三、@CommandLineRunner
+# 三、@CommandLineRunner和@ApplicationRunner
 ```
 @SpringBootApplication
 public class DemoApplication {
@@ -82,7 +82,7 @@ public class DemoApplication {
 ```
 
 先于主函数执行，order的值越低优先级越高
-```
+```java
 @Component
 @Order(value = 1)
 public class OrderRunner1 implements CommandLineRunner {
@@ -95,7 +95,7 @@ public class OrderRunner1 implements CommandLineRunner {
 }
 ```
 
-```
+```java
 @Component
 @Order(value = 2)
 public class OrderRunner2 implements CommandLineRunner {
@@ -105,6 +105,18 @@ public class OrderRunner2 implements CommandLineRunner {
 	}
 }
 ```
+
+```java
+@Component
+public class MyApplicationRunner implements ApplicationRunner{
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		System.out.println("the myApplicationRunner start");
+	}
+}
+```
+两者区别在于run方法的参数！！
+
 # 四、@ConfigurationProperties
 
 prefix：前缀
